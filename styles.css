@@ -1,0 +1,34 @@
+#proposicion {
+  background-color: #d5c660;
+  width: 500px;
+  height: 100px;
+  margin: 5px;
+  text-align: center;
+}
+
+#miFormulario {
+  margin: 35px;
+}
+
+input[class="text"] {
+width: 500px;
+margin: 5px;
+}
+
+input[class="valores"] {
+    width: 50px;
+    margin: 10px;
+    text-align: center;
+}
+
+input[class="resultado"] {
+    width: 150px;
+    margin: 10px;
+}
+
+.btn {
+    font-size: 1em;
+    width: 100px;
+    margin: 5px;
+    padding: 2px;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="https://play-lh.googleusercontent.com/MHNOgtqUVUKit62Zaqw2x1uBumRzlW3qqcnRavQvrlamD5fsuCq0tZ9BgvV7mB8nHTqm">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+    </head>
+  <body>
+    <!-- Encabezado -->
+    <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Calculadora de Proposiciones</span> <!--titulo del encabezado-->
+    </div>    
+    </nav>
+    <!-- Campo donde se pide ingresar la formula -->
+    <form class="form-control container form-control-lg" action="/calcular" method="POST" id="miFormulario"> 
+        
+        <div class="container-lg text-center"> 
+            <input type="text" name="proposicion" id="proposicion" placeholder="Ingrese una Formula valida" class="text"> 
+        </div>
+
+        <div class="text-center">
+            <div class="col-auto">
+                P ≡ <input type="text" name="P" id="P" placeholder="V/F" class="valores" pattern="[VF10vf]+"required>
+                Q ≡ <input type="text" name="Q" id="Q" placeholder="V/F" class="valores" pattern="[VF10vf]+"required> 
+                R ≡ <input type="text" name="R" id="R" placeholder="V/F" class="valores" pattern="[VF10vf]+"required> 
+                S ≡ <input type="text" name="S" id="S" placeholder="V/F" class="valores" pattern="[VF10vf]+"required> 
+                T ≡ <input type="text" name="T" id="T" placeholder="V/F" class="valores" pattern="[VF10vf]+"required> 
+            </div>
+        </div>
+        
+        <hr>
+        
+        <div class="row">
+            <div class="col text-center">
+                <input type="submit" class="btn btn-outline-success" value="Calcular">
+                <!--<input type="submit" class="btn btn-outline-primary" value="Tabla">-->
+                <button id="miBoton" onclick="mostrarTabla()">Mostrar tabla</button>
+                <div id="tablaVerdades"></div>
+                <script>
+                    function mostrarTabla() {
+  // Define la tabla de verdades como un arreglo de arreglos
+  var tabla = [
+    [true, true, true],
+    [true, false, false],
+    [false, true, false],
+    [false, false, true],
+    [true, true, false],
+    [true, false, true],
+    [false, true, true],
+    [false, false, false]
+
+  ];
+
+  // Crea una tabla HTML
+  var tablaHTML = "<table><tr><th>p</th><th>q</th><th>r</th><th>p AND q</th><th>p AND q --> r</th></tr>"
+  for (var i = 0; i < tabla.length; i++) {
+    tablaHTML += "<tr>";
+    for (var j = 0; j < tabla[i].length; j++) {
+      tablaHTML += "<td>" + tabla[i][j] + "</td>";
+    }
+    tablaHTML += "</tr>";
+  }
+  tablaHTML += "</table>";
+
+  // Inserta la tabla HTML en el elemento correspondiente
+  document.getElementById("tablaVerdades").innerHTML = tablaHTML;
+}
+                </script>
+                <input type="reset" class="btn btn-outline-danger" value="Borrar">
+                <input type="reset" value="Restaurar">
+            </div>
+        </div>
+
+        <hr>
+        
+        <div class="text-center">
+            <div class="col-auto">
+                Valor de Verdad: <input type="text" name="resultado" id="resultado" placeholder="Resultado" class="placeholder">
+            </div>
+        </div>
+        
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    </body>
+</html>
+
+
